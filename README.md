@@ -14,4 +14,4 @@ subscribe(topicName)
 
 publish(topicName, message)
 
-send_telegram(BotApiKey, MyChannelName, message)
+send_telegram(BotApiKey, ChannelName, message)
