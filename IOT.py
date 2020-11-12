@@ -20,10 +20,10 @@ class IOT:
 	#connect to WIFI
 	uart.init(baudrate=9600, tx = pin0, rx = pin1)
 	uart.write("\r")
-	__readUntil(uart, '\r')
+	self.__readUntil(uart, '\r')
 	uart.write("|2|1|", yourSSID, ",", yourPASSWORD, "|\r")
-	__readUntil(uart, '3')
-	ipadress = __readUntil(uart, '\r')
+	self.__readUntil(uart, '3')
+	ipadress = self.__readUntil(uart, '\r')
 	uart.init(baudrate=115200)
 	print(ipadress)
         return True
@@ -33,23 +33,23 @@ class IOT:
 	'''server = "api.thingspeak.com";
 	   port = "80" '''
 	uart.write("\r")
-	__readUntil(uart, '\r')
+	self.__readUntil(uart, '\r')
 	uart.write("|4|1|1|", server,"|", port, "|", user, "|", password, "|\r")
-	__readUntil(uart, '4')
-	__readUntil(uart, '1')
-	__readUntil(uart, '1')
-	__readUntil(uart, '1')
+	self.__readUntil(uart, '4')
+	self.__readUntil(uart, '1')
+	self.__readUntil(uart, '1')
+	self.__readUntil(uart, '1')
 	return True
 
     def subscribe(self, topicName):
 	#subscribe on topic
 	uart.write("\r")
-	__readUntil(uart, '\r')
+	self.__readUntil(uart, '\r')
 	uart.write("|4|1|2|", topicName, "|\r")
-	__readUntil(uart, '4')
-	__readUntil(uart, '1')
-	__readUntil(uart, '2')
-	__readUntil(uart, '1')
+	self.__readUntil(uart, '4')
+	self.__readUntil(uart, '1')
+	self.__readUntil(uart, '2')
+	self.__readUntil(uart, '1')
 	return True
 
     def publish(self, topicName, message):
@@ -57,17 +57,17 @@ class IOT:
 	uart.write("\r")
 	__readUntil(uart, '\r')
 	uart.write("|4|1|3|", topicName, "|", message, "|\r")
-	__readUntil(uart, '4')
-	__readUntil(uart, '1')
-	__readUntil(uart, '3')
-	__readUntil(uart, '1')
+	self.__readUntil(uart, '4')
+	self.__readUntil(uart, '1')
+	self.__readUntil(uart, '3')
+	self.__readUntil(uart, '1')
 	return True
 
     def send_telegram(self, BotApiKey, MyChannelName, message):
 	#publish a message to Bot on telegram
 	uart.write("\r")
-	__readUntil(uart, '\r')
+	self.__readUntil(uart, '\r')
 	uart.write("|3|1|https://api.telegram.org/bot", BotApiKey, "/sendMessage?chat_id=",MyChannelName,"&text=" message, "\r")
-	__readUntil(uart, '3')
-        result = __readUntil(uart, '\r')
+	self.__readUntil(uart, '3')
+        result = self.__readUntil(uart, '\r')
 	return True
