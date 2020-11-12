@@ -1,8 +1,8 @@
 from microbit import uart, sleep
 
 class IOT:
-    ipadress ="0.0.0.0"
-    BotApiKey= "yourBotApiKey"
+    ipadress = "0.0.0.0"
+    BotApiKey = "yourBotApiKey"
     MyChannelName = "yourChannelName"
 
     def __readUntil(self, uartObject, termination):
@@ -51,6 +51,7 @@ class IOT:
 	__readUntil(uart, '2')
 	__readUntil(uart, '1')
 	return True
+
     def publish(self, topicName, message):
 	#publish a message to Broker on topic
 	uart.write("\r")
