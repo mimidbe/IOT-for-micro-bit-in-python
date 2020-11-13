@@ -30,8 +30,10 @@ class IOT:
 
     def connect_iot_cloud(self, server,port,user,password):
 	#connect to MQTT Broker server
-	'''server = "api.thingspeak.com";
-	   port = "80" '''
+	'''Thingspeak; server="api.thingspeak.com";port="80"
+	   Blynk; server="blynk-cloud.com" ;http port="8080"; https port="9443"
+	exemple:
+	'''
 	uart.write("\r")
 	self.__readUntil(uart, '\r')
 	uart.write("|4|1|1|", server,"|", port, "|", user, "|", password, "|\r")
